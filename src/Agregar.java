@@ -20,17 +20,17 @@ public class Agregar extends javax.swing.JFrame {
         initComponents();
     }
     public void Buscador() {
-        JFileChooser chooser = new JFileChooser();
-        chooser.setCurrentDirectory(new java.io.File("."));
+        JFileChooser buscador = new JFileChooser();
+        buscador.setCurrentDirectory(new java.io.File("."));
         FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("MP3","mp3");
-        chooser.setFileFilter(filtroImagen);
-        chooser.setDialogTitle("Titulo");
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            String c= "Directorio: " + chooser.getSelectedFile();
-            System.out.println(c);
+        buscador.setFileFilter(filtroImagen);
+        buscador.setDialogTitle("Seleccione una cancion");
+        if (buscador.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+            Object direccion= buscador.getSelectedFile();
+            System.out.println(direccion);
             } 
         else {
-            System.out.println("No seleccion ");
+            System.out.println("Error, no selecciono una cancion!");
         }
         }
     /**
