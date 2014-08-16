@@ -8,9 +8,13 @@
  *
  * @author Alfonso
  */
+import org.blinkenlights.jid3.ID3Exception;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.blinkenlights.jid3.ID3Exception;
 public class Agregar extends javax.swing.JFrame {
     public String direccion;
     public String nombre;
@@ -21,7 +25,7 @@ public class Agregar extends javax.swing.JFrame {
     public Agregar() {
         initComponents();
     }
-    public void Buscador() {
+    public void Buscador() throws ID3Exception{
         JFileChooser buscador = new JFileChooser();
         buscador.setCurrentDirectory(new java.io.File("."));
         FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("MP3","mp3");
@@ -100,8 +104,12 @@ public class Agregar extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        Buscador();
+        try {
+            // TODO add your handling code here:
+            Buscador();
+        } catch (ID3Exception ex) {
+            Logger.getLogger(Agregar.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     /**

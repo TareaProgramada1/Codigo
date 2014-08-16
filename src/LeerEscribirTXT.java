@@ -1,17 +1,19 @@
 import java.io.*;
+import org.blinkenlights.jid3.ID3Exception;
 public class LeerEscribirTXT{
-    public void crear(String nombre,String direccion)throws IOException{
+    PrintWriter Escribir_por_linea = null;
+    public void crear(String nombre,String direccion)throws ID3Exception,IOException{
         File texto = new File(nombre+".txt");
         texto.createNewFile();
-        FileWriter manejarTextoEscritura = new FileWriter(texto); 
-        manejarTextoEscritura.write(direccion); 
-        manejarTextoEscritura.flush();
-        manejarTextoEscritura.close();
-//        FileReader manejarTextoLectura = new FileReader(texto); 
-//        char [] contenido = new char[50];
-//        manejarTextoLectura.read(contenido);
-//        for(char letra : contenido)
-//            System.out.print(letra);
-//        manejarTextoLectura.close(); 
+        FileWriter manejarTextoEscritura = new FileWriter(texto);
+        //cambie el metodo de escribir para que todos los datos queden por linea de texto
+        MetaDatos p=new MetaDatos(direccion);
+        Escribir_por_linea = new PrintWriter(manejarTextoEscritura);
+        Escribir_por_linea.println(direccion);
+        Escribir_por_linea.println(p.getArtista());
+        Escribir_por_linea.println(p.getAnno());
+        Escribir_por_linea.println(p.getTitulo());
+        Escribir_por_linea.println(p.getAlbum());
+        manejarTextoEscritura.close(); 
     }
 }
