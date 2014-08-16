@@ -10,8 +10,10 @@
  */
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
-
+import java.io.IOException;
 public class Agregar extends javax.swing.JFrame {
+    public String direccion;
+    public String nombre;
 
     /**
      * Creates new form Boton1
@@ -26,9 +28,16 @@ public class Agregar extends javax.swing.JFrame {
         buscador.setFileFilter(filtroImagen);
         buscador.setDialogTitle("Seleccione una cancion");
         if (buscador.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            Object direccion= buscador.getSelectedFile();
-            System.out.println(direccion);
+            direccion= buscador.getSelectedFile().toString();
+            nombre=buscador.getSelectedFile().getName();
+            LeerEscribirTXT hola=new LeerEscribirTXT();
+            try{
+                hola.crear(nombre, direccion);
             } 
+            catch(IOException ioe){
+                System.out.println(ioe);
+            }
+        }
         else {
             System.out.println("Error, no selecciono una cancion!");
         }
