@@ -13,8 +13,8 @@ import java.util.Arrays;
 public class leer_archivo {
 public String [] Lista_meta;
 public int Contador;
-public leer_archivo(){
-    Lista_meta = new String [5];
+public leer_archivo(int capacidad){
+    Lista_meta = new String [capacidad];
     Contador = 0;
 
 }

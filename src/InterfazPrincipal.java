@@ -1,3 +1,8 @@
+
+import java.awt.Component;
+import java.io.File;
+import javax.swing.JOptionPane;
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -9,7 +14,12 @@
  * @author Alfonso
  */
 public class InterfazPrincipal extends javax.swing.JFrame{
-String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas"};
+String [] lista_p;
+String [] lista_metadatos;
+String Nombre_can;
+String Ruta;
+int indice_lista;
+    private Component frame;
     /**
      * Creates new form Interfaz
      */
@@ -26,6 +36,7 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jDialog1 = new javax.swing.JDialog();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -37,6 +48,18 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
         jScrollPane1 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
+
+        javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
+        jDialog1.getContentPane().setLayout(jDialog1Layout);
+        jDialog1Layout.setHorizontalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 400, Short.MAX_VALUE)
+        );
+        jDialog1Layout.setVerticalGroup(
+            jDialog1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 300, Short.MAX_VALUE)
+        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBackground(new java.awt.Color(0, 153, 153));
@@ -77,17 +100,29 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
             }
         });
 
-        jList1.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
+        jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jList1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jList1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
         });
         jScrollPane1.setViewportView(jList1);
 
-        jButton7.setText("Visualizar ejemplo");
+        jButton7.setText("Actualizar Biblioteca ");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
+            }
+        });
+
+        jButton8.setText("Consultar Cancion seleccionada");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
             }
         });
 
@@ -128,7 +163,9 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jButton7)
-                .addGap(181, 181, 181))
+                .addGap(18, 18, 18)
+                .addComponent(jButton8)
+                .addGap(24, 24, 24))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -141,21 +178,23 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
                         .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton6)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton5))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(32, 32, 32)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton6)
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton2)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jButton5)))))
                 .addGap(18, 18, 18)
-                .addComponent(jButton7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton8)
+                    .addComponent(jButton7))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 116, Short.MAX_VALUE)
                 .addComponent(jButton4)
                 .addContainerGap())
         );
@@ -189,17 +228,63 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Interfas_consultar().setVisible(true);
-            }
-        });
+        indice_lista=jList1.getSelectedIndex();
+        if(indice_lista >=0){
+        Nombre_can = lista_p[indice_lista];
+        leer_archivo Consulta_cancion = new leer_archivo(6);
+        File miDir = new File (".");
+     try {
+       Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
+       }
+     catch(Exception e) {
+       e.printStackTrace();
+       }
+        lista_metadatos=Consulta_cancion.leer_archivo1(Ruta);
+        
+        Interfas_consultar consul=new Interfas_consultar();
+        consul.main(lista_metadatos);
+        }
+        else{
+            JOptionPane.showMessageDialog(frame,"Por favor seleccione una cacnion");
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        jList1.setListData(lista_p);
+     File miDir = new File (".");
+     try {
+       Ruta = miDir.getCanonicalPath() + "/Lista_canciones.txt";
+       }
+     catch(Exception e) {
+       e.printStackTrace();
+       }
+     leer_archivo extraer = new leer_archivo(30);
+     lista_p=extraer.leer_archivo1(Ruta);
+     jList1.setListData(lista_p);
     }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jList1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jList1AncestorAdded
+        // TODO add your handling code here:
+        File miDir = new File (".");
+     try {
+       Ruta = miDir.getCanonicalPath() + "/Lista_canciones.txt";
+       }
+     catch(Exception e) {
+       e.printStackTrace();
+       }
+     leer_archivo extraer = new leer_archivo(30);
+     lista_p=extraer.leer_archivo1(Ruta);
+     jList1.setListData(lista_p);
+    }//GEN-LAST:event_jList1AncestorAdded
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+    indice_lista=jList1.getSelectedIndex();
+    Nombre_can = lista_p[indice_lista];
+    
+    
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -246,7 +331,9 @@ String [] lista_p = {"Esto", "Es", "Una", "Forma","DEl listado de la bibliotecas
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JDesktopPane jDesktopPane1;
+    private javax.swing.JDialog jDialog1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;
     private javax.swing.JScrollPane jScrollPane1;
