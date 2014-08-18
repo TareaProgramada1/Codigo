@@ -13,10 +13,10 @@ import java.util.Arrays;
 public class leer_archivo {
 public String [] Lista_meta;
 public int Contador;
+public String aux;
 public leer_archivo(int capacidad){
     Lista_meta = new String [capacidad];
     Contador = 0;
-
 }
 //El parametro nombre indica el nombre del archivo por ejemplo
 public String[] leer_archivo1(String nombre){
@@ -52,5 +52,22 @@ System.out.println("Error:"+e.getMessage());
 }
 System.out.println(Arrays.toString(Lista_meta));
 return Lista_meta;
-}    
+} 
+public String leerDireccion(String ruta){
+try{
+File archivo;
+FileReader lectorArchivo;
+//Creamos el objeto del archivo que vamos a leer
+archivo = new File(ruta);
+//Creamos el objeto FileReader que abrira el flujo(Stream) de datos para realizar la lectura
+lectorArchivo = new FileReader(archivo);
+//Creamos un lector en buffer para recopilar datos a travez del flujo "lectorArchivo" que hemos creado
+BufferedReader br = new BufferedReader(lectorArchivo);
+aux=br.readLine();
+}
+catch(IOException e){
+System.out.println("Error:"+e.getMessage());
+}
+return aux;
+}
 }
