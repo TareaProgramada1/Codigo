@@ -38,7 +38,6 @@ while(true)
 aux=br.readLine();
 //leemos una linea de texto y la guardamos en la variable auxiliar
 if(aux!=null){
-  System.out.println(aux);
   Lista_meta [Contador]= aux;
   Contador++; 
 }
@@ -47,10 +46,7 @@ break;
 }
 br.close();
 lectorArchivo.close();
-}catch(IOException e){
-System.out.println("Error:"+e.getMessage());
-}
-System.out.println(Arrays.toString(Lista_meta));
+}catch(IOException e){}
 return Lista_meta;
 } 
 public String leerDireccion(String ruta){
@@ -65,9 +61,7 @@ lectorArchivo = new FileReader(archivo);
 BufferedReader br = new BufferedReader(lectorArchivo);
 aux=br.readLine();
 }
-catch(IOException e){
-System.out.println("Error:"+e.getMessage());
-}
+catch(IOException e){}
 return aux;
 }
 }

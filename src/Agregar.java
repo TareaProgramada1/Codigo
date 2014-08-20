@@ -38,12 +38,9 @@ public class Agregar extends javax.swing.JFrame {
                 nuevoTXT.crear(nombre, direccion);
             } 
             catch(IOException ioe){
-                System.out.println(ioe);
             }
         }
-        else {
-            System.out.println("Error, no selecciono una cancion!");
-        }
+        
         }
     /**
      * This method is called from within the constructor to initialize the form.
