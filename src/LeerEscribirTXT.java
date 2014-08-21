@@ -28,6 +28,7 @@ public class LeerEscribirTXT{
        }
     File Archivo = new File(Ruta);
     FileWriter Escribir = new FileWriter(Archivo, true);
+    Escribir.write("\n");
     Escribir.write(nombre);
     Escribir.close();
     }

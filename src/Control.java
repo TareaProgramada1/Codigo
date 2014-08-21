@@ -10,8 +10,8 @@ import javazoom.jl.player.Player;
 
 public class Control 
 {
-    FileInputStream FIS;
-    BufferedInputStream BIS;
+    FileInputStream archivo;
+    BufferedInputStream Buffer_cancion;
     
     public Player player;
     
@@ -20,37 +20,30 @@ public class Control
     
     public String fileLocation;
     
-    public void Stop()
-    {
+    public void Stop(){
         if(player != null){
-            
             player.close();
-            
             pauseLocation = 0;
             songtotalLength = 0;
         }
     }
-    public void Pause()
-    {
+    public void Pause(){
         if(player != null){
             try {
-                pauseLocation =FIS.available();
+                pauseLocation =archivo.available();
                 player.close();
-            } catch (IOException ex) {
+                } 
+            catch (IOException ex) {
                 JOptionPane.showMessageDialog(null,"Error");
-            }
-            
+            }   
         }
     }
     public void Resume(){
-        
         try{
-            FIS = new FileInputStream(fileLocation);
-            BIS = new BufferedInputStream(FIS);
-            
-            player = new Player(BIS);
-            
-            FIS.skip(songtotalLength - pauseLocation);
+            archivo = new FileInputStream(fileLocation);
+            Buffer_cancion = new BufferedInputStream(archivo);
+            player = new Player(Buffer_cancion);
+            archivo.skip(songtotalLength - pauseLocation);
         }
         catch (FileNotFoundException | JavaLayerException ex){
             
@@ -76,12 +69,12 @@ public class Control
      public void Play(String path){
         
         try{
-            FIS = new FileInputStream(path);
-            BIS = new BufferedInputStream(FIS);
+            archivo = new FileInputStream(path);
+            Buffer_cancion = new BufferedInputStream(archivo);
             
-            player = new Player(BIS);
+            player = new Player(Buffer_cancion);
             
-            songtotalLength = FIS.available();
+            songtotalLength = archivo.available();
             
             fileLocation = path +"";
         }
