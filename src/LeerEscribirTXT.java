@@ -18,6 +18,8 @@ public class LeerEscribirTXT{
         Escribir_por_linea.println(p.getAnno());
         Escribir_por_linea.println(p.getTitulo());
         Escribir_por_linea.println(p.getAlbum());
+        Escribir_por_linea.println(p.getGenero());
+        Escribir_por_linea.println(p.Duracion());
         manejarTextoEscritura.close();
         File miDir = new File (".");
      try {

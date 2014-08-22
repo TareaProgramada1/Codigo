@@ -1,21 +1,27 @@
 
-import java.io.File;
-/**
- *obtinene artista, año, titulo, album, de las canciones y se guarda en el archivo de texto de
- * agregar junto con la ruta
- * @author jhonson
- */
-import org.blinkenlights.jid3.ID3Exception;
 import java.io.*;
+import java.io.File;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.blinkenlights.jid3.*;
+import org.blinkenlights.jid3.ID3Exception;
 import org.blinkenlights.jid3.v1.*;
 import org.blinkenlights.jid3.v2.*;
+import org.jaudiotagger.audio.AudioFile;
+import org.jaudiotagger.audio.AudioFileIO;
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
 
 public class MetaDatos {
 
 
-    private String Artista,Album,Titulo;
+    private String Artista,Album,Titulo, Genero, Duracion_completo;
     private int anno;
+    int hor, min,seg,num;
+    int duracion;
+    private Object audioFile;
     
     public MetaDatos(String mp3 ) throws ID3Exception
         
@@ -44,6 +50,28 @@ public class MetaDatos {
                     Album=oID3V2_3_0Tag.getAlbum();
                     Titulo=oID3V2_3_0Tag.getTitle();
                     anno=oID3V2_3_0Tag.getYear();
+                    Genero=oID3V2_3_0Tag.getGenre();
+                    AudioFile Duracion_can;
+                try {
+                    Duracion_can = AudioFileIO.read(oSourceFile);
+                    duracion = Duracion_can.getAudioHeader().getTrackLength();
+                    num=duracion;
+                    hor=num/3600;  
+                    min=(num-(3600*hor))/60;  
+                    seg=num-((hor*3600)+(min*60));  
+                    Duracion_completo= hor+"h "+min+"m "+seg+"s";
+                } catch (CannotReadException ex) {
+                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IOException ex) {
+                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (TagException ex) {
+                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (ReadOnlyFileException ex) {
+                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InvalidAudioFrameException ex) {
+                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                
                     
                     
             }
@@ -61,8 +89,12 @@ public class MetaDatos {
     public int getAnno(){
     return this.anno;
     }
-    public void setTitulo(String m){
-    this.Titulo=m;
+    public String getGenero(){
+        return Genero;
     }
+    public String Duracion(){
+        return Duracion_completo;
+    }  
+    
     
 }

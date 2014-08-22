@@ -248,7 +248,7 @@ private Component frame;
         indice_lista=jList1.getSelectedIndex();
         if(indice_lista >=0){
         Nombre_can = lista_p[indice_lista];
-        leer_archivo Consulta_cancion = new leer_archivo(6);
+        leer_archivo Consulta_cancion = new leer_archivo(8);
         File miDir = new File (".");
      try {
        Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
