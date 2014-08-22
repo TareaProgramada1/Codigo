@@ -232,7 +232,8 @@ String nombre1;
     }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
-     * @param args the command line arguments
+     * @param Lista
+     * Lista que recibe los datos de la cancion seleccionnada
      */
     public  void main(String [] Lista) {
         Lista_meta= Lista;
@@ -261,6 +262,7 @@ String nombre1;
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 
                 new Interfas_consultar().setVisible(true);

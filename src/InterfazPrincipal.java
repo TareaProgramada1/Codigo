@@ -23,10 +23,11 @@ import org.blinkenlights.jid3.ID3Exception;
  */
 public class InterfazPrincipal extends javax.swing.JFrame{
 Control Music = new Control();
-String [] lista_p;
+private String [] lista_p;
 String [] lista_metadatos;
 String Nombre_can;
 String Ruta;
+String Ruta2;
 int indice_lista;
 public String direccion;
 public String nombre;
@@ -220,6 +221,7 @@ private Component frame;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        Music.Stop();
         dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -230,13 +232,13 @@ private Component frame;
         jButton10.setEnabled(false);
         File miDir = new File (".");
      try {
-       Ruta = miDir.getCanonicalPath() + "/Lista_canciones.txt";
+       Ruta2 = miDir.getCanonicalPath() + "/Lista_canciones.txt";
        }
      catch(Exception e) {
        e.printStackTrace();
        }
      leer_archivo extraer = new leer_archivo(30);
-     lista_p=extraer.leer_archivo1(Ruta);
+     lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jList1AncestorAdded
 
@@ -340,7 +342,7 @@ private Component frame;
             }
         }
      leer_archivo extraer = new leer_archivo(30);
-     lista_p=extraer.leer_archivo1(Ruta);
+     lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jButton5ActionPerformed
 
