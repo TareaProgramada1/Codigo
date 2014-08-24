@@ -304,20 +304,23 @@ String nombre1;
             FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
             BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
             int i=0;    
-            if(Lista_meta[1].equals(lista_p[i])){
-                TXTactualizadoEscribir.write(jTextField5.getText());
-            }
-            else{
-                TXTactualizadoEscribir.write(lista_p[i]);
-            }
-            i++;
             while(lista_p[i]!=null){
-                TXTactualizadoEscribir.newLine();
-                if(Lista_meta[1].equals(lista_p[i])){
-                    TXTactualizadoEscribir.write(jTextField5.getText());
+                if (i==0){
+                    if(Lista_meta[1].equals(lista_p[i])){
+                        TXTactualizadoEscribir.write(jTextField5.getText());
+                    }
+                    else{
+                        TXTactualizadoEscribir.write(lista_p[i]);
+                    }
                 }
                 else{
-                    TXTactualizadoEscribir.write(lista_p[i]);
+                    TXTactualizadoEscribir.newLine();
+                    if(Lista_meta[1].equals(lista_p[i])){
+                        TXTactualizadoEscribir.write(jTextField5.getText());
+                    }
+                    else{
+                        TXTactualizadoEscribir.write(lista_p[i]);
+                    }
                 }
                 i++;
             }
