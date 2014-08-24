@@ -1,8 +1,6 @@
 
 import java.awt.Component;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -156,10 +154,9 @@ private Component frame;
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(14, Short.MAX_VALUE)
                 .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addComponent(jButton5)
@@ -168,8 +165,11 @@ private Component frame;
                         .addGap(18, 18, 18)
                         .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton4)))
-                .addContainerGap())
+                        .addComponent(jButton4)
+                        .addGap(85, 85, 85))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
             .addGroup(layout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -222,7 +222,7 @@ private Component frame;
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         Music.Stop();
-        dispose();
+        System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jList1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jList1AncestorAdded
@@ -241,14 +241,17 @@ private Component frame;
      lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jList1AncestorAdded
-
+    
+    public void actualizar(){
+        leer_archivo extraer = new leer_archivo(30);
+        lista_p=extraer.leer_archivo1(Ruta2);
+        jList1.setListData(lista_p);
+    }
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-//    indice_lista=jList1.getSelectedIndex();
-//    Nombre_can = lista_p[indice_lista];
-        
         indice_lista=jList1.getSelectedIndex();
         if(indice_lista >=0){
+            actualizar();
         Nombre_can = lista_p[indice_lista];
         leer_archivo Consulta_cancion = new leer_archivo(8);
         File miDir = new File (".");
@@ -266,9 +269,6 @@ private Component frame;
         else{
             JOptionPane.showMessageDialog(frame,"Por favor seleccione una canción");
         }
-        
-        
-    
     
     }//GEN-LAST:event_jButton8ActionPerformed
 

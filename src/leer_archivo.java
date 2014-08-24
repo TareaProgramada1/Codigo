@@ -9,7 +9,6 @@
  * @author jhonson
  */
 import java.io.*;
-import java.util.Arrays;
 public class leer_archivo {
 public String [] Lista_meta;
 public int Contador;
@@ -58,8 +57,8 @@ archivo = new File(ruta);
 //Creamos el objeto FileReader que abrira el flujo(Stream) de datos para realizar la lectura
 lectorArchivo = new FileReader(archivo);
 //Creamos un lector en buffer para recopilar datos a travez del flujo "lectorArchivo" que hemos creado
-BufferedReader br = new BufferedReader(lectorArchivo);
-aux=br.readLine();
+BufferedReader leer = new BufferedReader(lectorArchivo);
+aux=leer.readLine();
 }
 catch(IOException e){}
 return aux;
