@@ -38,7 +38,7 @@ public String[] listacanciones( String nomArchi )
      catch(Exception e) {
        e.printStackTrace();
        }
-     leer_archivo extraer = new leer_archivo(6);
+     leer_archivo extraer = new leer_archivo(11);
      this.lista1=extraer.leer_archivo1(direccion);
      return this.lista1;
 }
@@ -55,8 +55,8 @@ public String[] obtenerAlbum(String list[])
         
 {  
    
-    Listas album1 = new Listas(10);
-    Listageneral=new String[10];
+    Listas album1 = new Listas(11);
+    Listageneral=new String[11];
     File miDir = new File(".");
     this.album=list;
     int tamaño = this.album.length;
@@ -67,7 +67,7 @@ public String[] obtenerAlbum(String list[])
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            leer_archivo Consulta_cancion = new leer_archivo(7);
+            leer_archivo Consulta_cancion = new leer_archivo(11);
             this.Obtenerdato = Consulta_cancion.leer_archivo1(direccion);
             album1.agregarele(Obtenerdato[4]);
             this.Listageneral = album1.imprimir(lista1.length);
@@ -79,8 +79,8 @@ public String[] obtenerArtista(String list[])
 {  
    
     
-    Listas album1 = new Listas(10);
-    Listageneral=new String[10];
+    Listas album1 = new Listas(11);
+    Listageneral=new String[11];
     File miDir = new File(".");
     this.album=list;
     int tamaño = this.album.length;
@@ -91,7 +91,7 @@ public String[] obtenerArtista(String list[])
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            leer_archivo Consulta_cancion = new leer_archivo(7);
+            leer_archivo Consulta_cancion = new leer_archivo(11);
             this.Obtenerdato = Consulta_cancion.leer_archivo1(direccion);
             album1.agregarele(Obtenerdato[2]);
             this.Listageneral = album1.imprimir(lista1.length);
@@ -100,8 +100,8 @@ public String[] obtenerArtista(String list[])
 }
 public String[] obtenerNombre(String list[])
 {  
-    Listas album1 = new Listas(6);
-    Listageneral=new String[10];
+    Listas album1 = new Listas(11);
+    Listageneral=new String[11];
     File miDir = new File(".");
     this.album=list;
     int tamaño = this.album.length;
@@ -112,7 +112,7 @@ public String[] obtenerNombre(String list[])
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            leer_archivo Consulta_cancion = new leer_archivo(7);
+            leer_archivo Consulta_cancion = new leer_archivo(11);
             this.Obtenerdato = Consulta_cancion.leer_archivo1(direccion);
             album1.agregarele(Obtenerdato[1]);
             this.Listageneral = album1.imprimir(lista1.length);
