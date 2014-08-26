@@ -164,25 +164,35 @@ public void str()
             Artista=agrega.obtenerArtista(agrega.listacanciones("Lista_canciones"));
             s.addItems(Artista);
             }
-            else if(Nombre_can==Lista5[1])
+            else
             {
-            TextAutoCompleter s=new TextAutoCompleter( campotexto1);
-            album=agrega.obtenerArtista(agrega.listacanciones("Lista_canciones"));
-            s.addItems(album);  
+                
             }
-            else if (Nombre_can==Lista5[2])
+                if(Nombre_can==Lista5[1])
+            {
+                TextAutoCompleter s=new TextAutoCompleter( campotexto1);
+                album=agrega.obtenerAlbum(agrega.listacanciones("Lista_canciones"));
+                s.addItems(album);  
+            }
+            else
+                { 
+                    if (Nombre_can==Lista5[2])
             {
                 TextAutoCompleter s=new TextAutoCompleter(campotexto1);
-            Nombre=agrega.obtenerNombre(agrega.listacanciones("Lista_canciones"));
-            s.addItems(Nombre);
+                Nombre=agrega.obtenerNombre(agrega.listacanciones("Lista_canciones"));
+                s.addItems(Nombre);
             }                 
                    
-                 
-   }
-        else
+            
+            }
+        }
+            else
+        {
         {
             JOptionPane.showMessageDialog(frame,"Por favor seleccione una cancion");
         }
+   }
+        
    }
     private void campotexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campotexto1ActionPerformed
        
