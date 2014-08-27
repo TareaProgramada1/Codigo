@@ -249,8 +249,9 @@ private Component frame;
     }
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        String Elemento = (String) jList1.getSelectedValue();
         indice_lista=jList1.getSelectedIndex();
-        if(indice_lista >=0){
+        if (indice_lista>=0 & Elemento!=null){
             actualizar();
         Nombre_can = lista_p[indice_lista];
         leer_archivo Consulta_cancion = new leer_archivo(8);
@@ -283,8 +284,10 @@ private Component frame;
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        
+        String Elemento = (String) jList1.getSelectedValue();
         indice_lista=jList1.getSelectedIndex();
-        if (indice_lista>=0){
+        if (indice_lista>=0 & Elemento!=null){
         Info_cancion_seleccionada Reproduccion = new Info_cancion_seleccionada();
         jButton11.setEnabled(true);
         jButton9.setEnabled(false);

@@ -78,7 +78,7 @@ public class Control
             
             fileLocation = path +"";
         }
-        catch (FileNotFoundException | JavaLayerException ex){
+        catch (FileNotFoundException | JavaLayerException ex ){
             
              JOptionPane.showMessageDialog(null," Error -"+ex);
         } catch (IOException ex) {
