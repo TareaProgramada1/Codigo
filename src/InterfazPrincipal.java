@@ -254,13 +254,12 @@ private Component frame;
         if (indice_lista>=0 & Elemento!=null){
             actualizar();
         Nombre_can = lista_p[indice_lista];
-        leer_archivo Consulta_cancion = new leer_archivo(8);
+        leer_archivo Consulta_cancion = new leer_archivo(9);
         File miDir = new File (".");
      try {
        Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
        }
-     catch(Exception e) {
-       e.printStackTrace();
+     catch(IOException e) {
        }
         lista_metadatos=Consulta_cancion.leer_archivo1(Ruta);
         

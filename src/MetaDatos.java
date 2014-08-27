@@ -60,15 +60,7 @@ public class MetaDatos {
                     min=(num-(3600*hor))/60;  
                     seg=num-((hor*3600)+(min*60));  
                     Duracion_completo= hor+"h "+min+"m "+seg+"s";
-                } catch (CannotReadException ex) {
-                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (IOException ex) {
-                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (TagException ex) {
-                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (ReadOnlyFileException ex) {
-                    Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
-                } catch (InvalidAudioFrameException ex) {
+                } catch (CannotReadException | IOException | TagException | ReadOnlyFileException | InvalidAudioFrameException ex) {
                     Logger.getLogger(MetaDatos.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 

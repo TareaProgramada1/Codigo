@@ -29,7 +29,7 @@ public class Info_cancion_seleccionada {
     
         if(indice_lista >=0){
             Nombre_can = lista_p[indice_lista];
-            leer_archivo Consulta_cancion = new leer_archivo(8);
+            leer_archivo Consulta_cancion = new leer_archivo(9);
             File miDir = new File (".");
         try {
             Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
