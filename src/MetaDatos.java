@@ -49,7 +49,11 @@ public class MetaDatos {
                     Artista=oID3V2_3_0Tag.getArtist();
                     Album=oID3V2_3_0Tag.getAlbum();
                     Titulo=oID3V2_3_0Tag.getTitle();
+                    try{
                     anno=oID3V2_3_0Tag.getYear();
+                    }
+                    catch(org.blinkenlights.jid3.ID3Exception e){
+                    }
                     Genero=oID3V2_3_0Tag.getGenre();
                     AudioFile Duracion_can;
                 try {
