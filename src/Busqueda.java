@@ -19,20 +19,18 @@ import java.io.File;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
 public class Busqueda extends javax.swing.JFrame {
-    String Lista5[] = {"Artista", "Album","nombre","Genero"};
+    String Lista5[] = {"Artista", "Album","Nombre","Genero"};
     String album[];
     String Artista[];
     String Nombre[];
-    Object canciones[];
-    private int indice;
-    private String lista[];
-    private String nombre;
-    private String NOMBRRE;
-    private Component frame;
-    private String lista3[];
-    private String direccion;
-    String[] Obtenerdato;
+    String Genero[];
+    String lista[];
+    String listageneral[];
+    String Obtenerdato[];
     String Nombre_can;
+    private int indice;
+    private Component frame;
+    private String direccion;
     private String dir;
 
     /**
@@ -57,8 +55,10 @@ public class Busqueda extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         Lista1 = new javax.swing.JList();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jList2 = new javax.swing.JList();
+        campo_lista2 = new javax.swing.JList();
         Boton1 = new javax.swing.JButton();
+        boton2 = new javax.swing.JButton();
+        Boton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Búsqueda");
@@ -93,22 +93,36 @@ public class Busqueda extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(Lista1);
 
-        jList2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        jList2.addAncestorListener(new javax.swing.event.AncestorListener() {
+        campo_lista2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
+        campo_lista2.addAncestorListener(new javax.swing.event.AncestorListener() {
             public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
-                jList2AncestorAdded(evt);
+                campo_lista2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
         });
-        jScrollPane2.setViewportView(jList2);
+        jScrollPane2.setViewportView(campo_lista2);
 
         Boton1.setText("Activar opcion");
         Boton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Boton1ActionPerformed(evt);
+            }
+        });
+
+        boton2.setText("Buscar");
+        boton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boton2ActionPerformed(evt);
+            }
+        });
+
+        Boton2.setText("Salir");
+        Boton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Boton2ActionPerformed(evt);
             }
         });
 
@@ -118,15 +132,17 @@ public class Busqueda extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(campotexto1)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(Boton1)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(campotexto1)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(boton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton2))
                 .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -138,19 +154,23 @@ public class Busqueda extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(campotexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(boton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 151, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Boton1)
-                .addContainerGap(42, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Boton1)
+                    .addComponent(Boton2))
+                .addGap(24, 24, 24))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-public void str()
+public void cargar()
    {
        Busca_cancion agrega=new Busca_cancion(); 
        campotexto1.setText("");
@@ -189,11 +209,83 @@ public void str()
             else
         {
         {
-            JOptionPane.showMessageDialog(frame,"Por favor seleccione una cancion");
+            JOptionPane.showMessageDialog(frame,"Por favor seleccione");
         }
    }
         
    }
+public void buscar()//falta validar en caso que ingrese un nombre que no esta en lista 
+{
+    Listas cancion=new Listas(20);
+    String dato=campotexto1.getText();
+    if (dato.length()==0)
+    {
+        JOptionPane.showMessageDialog(frame,"Campo de texto vacio");
+    }
+    else
+    {
+        
+    int resultado;
+    File miDir = new File (".");
+     try {
+       direccion= miDir.getCanonicalPath() + "/Lista_canciones.txt";
+       }
+     catch(Exception e) {
+       e.printStackTrace();
+       }
+     leer_archivo extraer = new leer_archivo(11);
+     this.lista=extraer.leer_archivo1(direccion);
+     int tamaño = this.lista.length;
+        for (int i = 0; i < tamaño; i++) 
+        {
+            this.Nombre_can = this.lista[i];
+            try {
+                direccion = miDir.getCanonicalPath() + "/" + this.Nombre_can + ".txt";
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            leer_archivo Consulta_cancion = new leer_archivo(15);
+            this.Obtenerdato = Consulta_cancion.leer_archivo1(direccion);
+            String nom_artista=Obtenerdato[2];
+            nom_artista.trim();
+            dato.trim();
+            resultado=nom_artista.compareToIgnoreCase(dato);
+            if(resultado==0)
+            {
+               cancion.agregarele(Obtenerdato[1]); 
+               this.listageneral=cancion.imprimir(lista.length);   
+            }
+            else
+            {
+            String nom_album=Obtenerdato[4];
+            nom_album.trim();
+            dato.trim();
+            resultado=nom_album.compareToIgnoreCase(dato);
+            if(resultado==0)
+            {
+              cancion.agregarele(Obtenerdato[1]); 
+              this.listageneral=cancion.imprimir(lista.length);   
+            }
+            else
+            {
+            String nom_cancion=Obtenerdato[1];
+            nom_cancion.trim();
+            dato.trim();
+            resultado=nom_cancion.compareToIgnoreCase(dato);   
+            if(resultado==0)
+            {
+             cancion.agregarele(Obtenerdato[1]); 
+              this.listageneral=cancion.imprimir(lista.length);     
+            }
+            }
+                
+            }
+            
+       }
+        campo_lista2.setListData(listageneral);
+        
+   }
+}
     private void campotexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campotexto1ActionPerformed
        
 
@@ -205,17 +297,25 @@ public void str()
 
     }//GEN-LAST:event_Lista1AncestorAdded
 
-    private void jList2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jList2AncestorAdded
+    private void campo_lista2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_campo_lista2AncestorAdded
 
-    }//GEN-LAST:event_jList2AncestorAdded
+    }//GEN-LAST:event_campo_lista2AncestorAdded
 
     private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
-        str();
+        cargar();
     }//GEN-LAST:event_Boton1ActionPerformed
 
     private void campotexto1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_campotexto1AncestorAdded
        
     }//GEN-LAST:event_campotexto1AncestorAdded
+
+    private void boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boton2ActionPerformed
+        buscar();
+    }//GEN-LAST:event_boton2ActionPerformed
+
+    private void Boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton2ActionPerformed
+        dispose();
+    }//GEN-LAST:event_Boton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -253,11 +353,13 @@ public void str()
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Boton1;
+    private javax.swing.JButton Boton2;
     private javax.swing.JList Lista1;
+    private javax.swing.JButton boton2;
+    private javax.swing.JList campo_lista2;
     private javax.swing.JTextField campotexto1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JList jList2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     // End of variables declaration//GEN-END:variables

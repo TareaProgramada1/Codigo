@@ -23,14 +23,37 @@ public class Busca_cancion {
     String [] Obtenerdato;
     String direccion;
     String Nombr[];
-    
+    String cadena;
+    int lineas = 0;
     
 public void Busca_cancion()
 {
     
 }
+public int lineas(String archi)//Método para leer las lineas de texto que contiene el archivo txt.
+{
+    try{
+        FileReader abrir = new FileReader(archi+".txt"); //para abrir el archivo usamos la clase FileReader.
+        BufferedReader leer = new BufferedReader(abrir);
+        while ((cadena = leer.readLine())!=null)
+        {
+            lineas++;
+        }
+    }
+     catch (FileNotFoundException e)
+     {
+          e.printStackTrace();
+     }
+    catch (IOException ioe)
+    {
+        ioe.printStackTrace();
+    }
+    return lineas;
+}
 public String[] listacanciones( String nomArchi )
 {
+    Busca_cancion num=new Busca_cancion();
+    int cant=num.lineas("Lista_canciones");
     File miDir = new File (".");
      try {
        direccion = miDir.getCanonicalPath() + "/"+nomArchi+".txt";
@@ -38,7 +61,7 @@ public String[] listacanciones( String nomArchi )
      catch(Exception e) {
        e.printStackTrace();
        }
-     leer_archivo extraer = new leer_archivo(11);
+     leer_archivo extraer = new leer_archivo(cant);
      this.lista1=extraer.leer_archivo1(direccion);
      return this.lista1;
 }
