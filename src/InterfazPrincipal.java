@@ -61,6 +61,7 @@ private Component frame;
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -151,6 +152,13 @@ private Component frame;
             }
         });
 
+        jButton1.setText("Actualizar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -160,19 +168,19 @@ private Component frame;
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(12, 12, 12)
                                 .addComponent(jButton5)
-                                .addGap(44, 44, 44)
+                                .addGap(12, 12, 12)
+                                .addComponent(jButton1)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton3)
-                                .addGap(54, 54, 54)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(50, 50, 50)
+                                .addGap(18, 18, 18)
                                 .addComponent(jButton4))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 432, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(52, 52, 52)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -190,7 +198,7 @@ private Component frame;
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(87, 87, 87)
                                 .addComponent(jLabel1)))))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,13 +217,15 @@ private Component frame;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jDesktopPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5)
-                    .addComponent(jButton8)
-                    .addComponent(jButton4))
-                .addContainerGap(17, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jButton1)
+                        .addComponent(jButton3)
+                        .addComponent(jButton8)
+                        .addComponent(jButton4)))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         pack();
@@ -243,7 +253,7 @@ private Component frame;
      lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jList1AncestorAdded
-    
+
     public void actualizar(){
         leer_archivo extraer = new leer_archivo(30);
         lista_p=extraer.leer_archivo1(Ruta2);
@@ -254,7 +264,6 @@ private Component frame;
         String Elemento = (String) jList1.getSelectedValue();
         indice_lista=jList1.getSelectedIndex();
         if (indice_lista>=0 & Elemento!=null){
-            actualizar();
         Nombre_can = lista_p[indice_lista];
         leer_archivo Consulta_cancion = new leer_archivo(9);
         File miDir = new File (".");
@@ -350,6 +359,11 @@ private Component frame;
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        actualizar();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -388,6 +402,7 @@ private Component frame;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

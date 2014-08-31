@@ -308,6 +308,34 @@ ImageIcon imagen;
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        try{
+            leer_archivo cancionesActualizadas=new leer_archivo(100);
+            String [] lista_p=cancionesActualizadas.leer_archivo1("Lista_canciones.txt");
+            
+            File TXTactualizado = new File("Lista_canciones.txt");
+            TXTactualizado.createNewFile();
+            FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
+            BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
+            int i=0;    
+            boolean espacio=false;
+            while(lista_p[i]!=null){
+                if(Lista_meta[1].equals(lista_p[i])||lista_p[i].equals("") ){  
+                }
+                else{
+                    espacio=true;
+                    TXTactualizadoEscribir.write(lista_p[i]);
+                }
+                if(espacio){
+                    TXTactualizadoEscribir.newLine();
+                }
+                espacio=false;
+                i++;
+            }
+            TXTactualizadoEscribir.close();
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+       }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -332,7 +360,8 @@ ImageIcon imagen;
             escribir.write(jTextField7.getText());
             escribir.newLine();
             escribir.write(jTextField6.getText());
-            escribir.newLine();   
+            escribir.newLine();  
+            escribir.write(Lista_meta[0]);
             escribir.close();
             
             leer_archivo cancionesActualizadas=new leer_archivo(100);
@@ -344,21 +373,25 @@ ImageIcon imagen;
             BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
             int i=0;    
             while(lista_p[i]!=null){
-                if (i==0){
-                    if(Lista_meta[1].equals(lista_p[i])){
-                        TXTactualizadoEscribir.write(jTextField5.getText());
-                    }
-                    else{
-                        TXTactualizadoEscribir.write(lista_p[i]);
-                    }
+                if(lista_p[i].equals("")){               
                 }
                 else{
-                    TXTactualizadoEscribir.newLine();
-                    if(Lista_meta[1].equals(lista_p[i])){
-                        TXTactualizadoEscribir.write(jTextField5.getText());
+                    if (i==0){
+                        if(Lista_meta[1].equals(lista_p[i])){
+                            TXTactualizadoEscribir.write(jTextField5.getText());
+                        }
+                        else{
+                            TXTactualizadoEscribir.write(lista_p[i]);
+                        }
                     }
                     else{
-                        TXTactualizadoEscribir.write(lista_p[i]);
+                        TXTactualizadoEscribir.newLine();
+                        if(Lista_meta[1].equals(lista_p[i])){
+                            TXTactualizadoEscribir.write(jTextField5.getText());
+                        }
+                        else{
+                            TXTactualizadoEscribir.write(lista_p[i]);
+                        }
                     }
                 }
                 i++;
