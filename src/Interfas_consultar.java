@@ -1,9 +1,11 @@
 
+import java.awt.Component;
 import java.awt.Image;
 import java.io.*;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -19,6 +21,7 @@ public class Interfas_consultar extends javax.swing.JFrame {
 String nombre1;
 JLabel etiquetaFondo;
 ImageIcon imagen;
+private Component frame;
     public static String[] Lista_meta;
     /**
      * Creates new form Interfas_consultar
@@ -132,6 +135,12 @@ ImageIcon imagen;
         jLabel6.setText("Duracion:");
 
         jLabel7.setText("Genero:");
+
+        jTextField6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField6ActionPerformed(evt);
+            }
+        });
 
         jButton1.setText("Modificar Datos");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -335,6 +344,8 @@ ImageIcon imagen;
                 i++;
             }
             TXTactualizadoEscribir.close();
+            File eliminarTXT=new File(Lista_meta[1]+".txt");
+            eliminarTXT.delete();
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -343,63 +354,70 @@ ImageIcon imagen;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        File eliminarTXT=new File(Lista_meta[1]+".txt");
+        eliminarTXT.delete();
         File texto = new File(jTextField5.getText()+".txt");
         try{
-            texto.createNewFile();
-            FileWriter manejarTextoEscritura = new FileWriter(texto);
-            BufferedWriter escribir = new BufferedWriter(manejarTextoEscritura);
-            escribir.write(Lista_meta[0]);
-            escribir.newLine(); 
-            escribir.write(jTextField5.getText());
-            escribir.newLine();
-            escribir.write(jTextField1.getText());
-            escribir.newLine();
-            escribir.write(jTextField2.getText());
-            escribir.newLine();
-            escribir.write(jTextField3.getText());
-            escribir.newLine();
-            escribir.write(jTextField4.getText());
-            escribir.newLine();
-            escribir.write(jTextField7.getText());
-            escribir.newLine();
-            escribir.write(jTextField6.getText());
-            escribir.newLine();  
-            escribir.write(Lista_meta[0]);
-            escribir.close();
-            
-            leer_archivo cancionesActualizadas=new leer_archivo(100);
-            String [] lista_p=cancionesActualizadas.leer_archivo1("Lista_canciones.txt");
-            
-            File TXTactualizado = new File("Lista_canciones.txt");
-            TXTactualizado.createNewFile();
-            FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
-            BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
-            int i=0;    
-            while(lista_p[i]!=null){
-                if(lista_p[i].equals("")){               
-                }
-                else{
-                    if (i==0){
-                        if(Lista_meta[1].equals(lista_p[i])){
-                            TXTactualizadoEscribir.write(jTextField5.getText());
-                        }
-                        else{
-                            TXTactualizadoEscribir.write(lista_p[i]);
-                        }
+            if (jTextField5.getText().equals("")||jTextField1.getText().equals("")||jTextField2.getText().equals("")||jTextField3.getText().equals("")||jTextField4.getText().equals("")||jTextField6.getText().equals("")){
+                JOptionPane.showMessageDialog(frame,"No puede dejar espacios en blanco");
+            }
+            else{
+                texto.createNewFile();
+                FileWriter manejarTextoEscritura = new FileWriter(texto);
+                BufferedWriter escribir = new BufferedWriter(manejarTextoEscritura);
+                escribir.write(Lista_meta[0]);
+                escribir.newLine(); 
+                escribir.write(jTextField5.getText());
+                escribir.newLine();
+                escribir.write(jTextField1.getText());
+                escribir.newLine();
+                escribir.write(jTextField4.getText());
+                escribir.newLine();
+                escribir.write(jTextField3.getText());
+                escribir.newLine();
+                escribir.write(jTextField2.getText());
+                escribir.newLine();
+                escribir.write(jTextField7.getText());
+                escribir.newLine();
+                escribir.write(Lista_meta[7]);
+                escribir.newLine();
+                escribir.write(Lista_meta[0]);
+                escribir.close();
+
+                leer_archivo cancionesActualizadas=new leer_archivo(100);
+                String [] lista_p=cancionesActualizadas.leer_archivo1("Lista_canciones.txt");
+
+                File TXTactualizado = new File("Lista_canciones.txt");
+                TXTactualizado.createNewFile();
+                FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
+                BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
+                int i=0;    
+                while(lista_p[i]!=null){
+                    if(lista_p[i].equals("")){               
                     }
                     else{
-                        TXTactualizadoEscribir.newLine();
-                        if(Lista_meta[1].equals(lista_p[i])){
-                            TXTactualizadoEscribir.write(jTextField5.getText());
+                        if (i==0){
+                            if(Lista_meta[1].equals(lista_p[i])){
+                                TXTactualizadoEscribir.write(jTextField5.getText());
+                            }
+                            else{
+                                TXTactualizadoEscribir.write(lista_p[i]);
+                            }
                         }
                         else{
-                            TXTactualizadoEscribir.write(lista_p[i]);
+                            TXTactualizadoEscribir.newLine();
+                            if(Lista_meta[1].equals(lista_p[i])){
+                                TXTactualizadoEscribir.write(jTextField5.getText());
+                            }
+                            else{
+                                TXTactualizadoEscribir.write(lista_p[i]);
+                            }
                         }
                     }
+                    i++;
                 }
-                i++;
-            }
-            TXTactualizadoEscribir.close();
+                TXTactualizadoEscribir.close();
+                }
         }  
         catch(IOException e) {
        }
@@ -409,6 +427,10 @@ ImageIcon imagen;
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField6ActionPerformed
 
     /**
      * @param Lista
