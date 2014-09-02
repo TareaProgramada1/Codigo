@@ -381,7 +381,7 @@ private Component frame;
                 escribir.newLine();
                 escribir.write(Lista_meta[7]);
                 escribir.newLine();
-                escribir.write(Lista_meta[0]);
+                escribir.write(Lista_meta[8]);
                 escribir.close();
 
                 leer_archivo cancionesActualizadas=new leer_archivo(100);
