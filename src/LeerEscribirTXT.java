@@ -1,11 +1,13 @@
+/**
+ * Sirve para poder leer datos de un txt o crear un nuevo txt y escribirle datos
+*/
 import java.io.*;
 import org.blinkenlights.jid3.ID3Exception;
 public class LeerEscribirTXT{
     boolean Bandera;
     String Ruta;
     PrintWriter Escribir_por_linea = null;
-  
-    //Crea un archivo .txt en donde se almacenan los datos nesesarios
+    
     /**
      * Crea un archivo .txt en donde se almacenan los datos nesesarios
      * @param nombre Nombre de la cancion seleccionada

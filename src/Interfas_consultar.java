@@ -1,4 +1,8 @@
-
+/**
+ * Permite consultar una cancion previamente guardada
+ * @author jhonson
+ * @author Alfonso
+ */
 import java.awt.Component;
 import java.awt.Image;
 import java.io.*;
@@ -7,16 +11,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/**
- *
- * @author jhonson
- */
 public class Interfas_consultar extends javax.swing.JFrame {
 String nombre1;
 JLabel etiquetaFondo;
@@ -321,13 +315,15 @@ private Component frame;
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         try{
+            //Se extraen todas las caciones
             leer_archivo cancionesActualizadas=new leer_archivo(100);
             String [] lista_p=cancionesActualizadas.leer_archivo1("Lista_canciones.txt");
-            
+            // Se tiene que actulizar el txt de todas las canciones
             File TXTactualizado = new File("Lista_canciones.txt");
             TXTactualizado.createNewFile();
             FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
             BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
+            //Se realiza con control para asegurarse de no escribir el nombre de la cancion que se elimino
             int i=0;    
             boolean espacio=false;
             while(lista_p[i]!=null){
@@ -354,12 +350,22 @@ private Component frame;
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        File eliminarTXT=new File(Lista_meta[1]+".txt");
+        /**
+         * 
+         * Sirve para guardar los cambios de informacion que se realizaron
+         * Nota: Se puede modificar el dato de duracion, pero este cambio no se guarda
+         */
+        
+        File eliminarTXT=new File(Lista_meta[1]+".txt");//Se toma el nombre de la cancion y se agrega .txt para encontar el txt respectivo y eliminarlo
         eliminarTXT.delete();
-        File texto = new File(jTextField5.getText()+".txt");
+ 
+        File texto = new File(jTextField5.getText()+".txt");// Se saca el el contenido del primer Jtext y se crea un txt con el nombre de lo q se saco
+        //Como previamente todos los metadatos se guardan en variables, se puede eliminar el txt para que no hayan archivos inutiles
+        
         try{
             if (jTextField5.getText().equals("")||jTextField1.getText().equals("")||jTextField2.getText().equals("")||jTextField3.getText().equals("")||jTextField4.getText().equals("")||jTextField6.getText().equals("")){
                 JOptionPane.showMessageDialog(frame,"No puede dejar espacios en blanco");
+            // En caso de que se dejen espacios en blanco
             }
             else{
                 texto.createNewFile();
@@ -383,6 +389,7 @@ private Component frame;
                 escribir.newLine();
                 escribir.write(Lista_meta[8]);
                 escribir.close();
+                // Se escriben todos los datos actualizados
 
                 leer_archivo cancionesActualizadas=new leer_archivo(100);
                 String [] lista_p=cancionesActualizadas.leer_archivo1("Lista_canciones.txt");
@@ -391,6 +398,9 @@ private Component frame;
                 TXTactualizado.createNewFile();
                 FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
                 BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
+                // Se tiene que actualizar el txt que contiene todas las caciones
+                
+                // Se hace un control para no volver a agregar el nombre viejo de la cancion
                 int i=0;    
                 while(lista_p[i]!=null){
                     if(lista_p[i].equals("")){               

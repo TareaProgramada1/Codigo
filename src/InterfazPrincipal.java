@@ -218,7 +218,8 @@ private Component frame;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        //Detiene la cancion en reproduccion y cierra el programa
+        // Detiene la cancion en reproduccion y cierra el programa
+        // Antes era con dispose, pero si se abria otra ventana y se le daba salir, el programa segui ejecutandose
         Music.Stop();
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
