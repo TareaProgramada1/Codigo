@@ -265,7 +265,10 @@ ImageIcon imagen;
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        dispose(); 
+        dispose();
+        InterfazPrincipal ob = new InterfazPrincipal();
+        ob.setVisible(true);
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jTextField1AncestorAdded
@@ -398,9 +401,9 @@ ImageIcon imagen;
             }
             TXTactualizadoEscribir.close();
         }  
-        catch(Exception e) {
-            e.printStackTrace();
+        catch(IOException e) {
        }
+     
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
@@ -410,9 +413,11 @@ ImageIcon imagen;
     /**
      * @param Lista
      * Lista que recibe los datos de la cancion seleccionnada
+     * 
      */
     public  void main(String [] Lista) {
         Lista_meta= Lista;
+        
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.

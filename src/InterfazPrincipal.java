@@ -9,12 +9,6 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import org.blinkenlights.jid3.ID3Exception;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  *
  * @author Alfonso
@@ -30,6 +24,7 @@ int indice_lista;
 public String direccion;
 public String nombre;
 private Component frame;
+
     /**
      * Creates new form Interfaz
      */
@@ -37,6 +32,7 @@ private Component frame;
         initComponents();
         this.setResizable(false);
         setDefaultCloseOperation(0);
+        setTitle("Reproductor");
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -61,7 +57,6 @@ private Component frame;
         jButton11 = new javax.swing.JButton();
         jButton12 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -97,12 +92,12 @@ private Component frame;
 
         jList1.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jList1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jList1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane1.setViewportView(jList1);
@@ -152,13 +147,6 @@ private Component frame;
             }
         });
 
-        jButton1.setText("Actualizar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -172,9 +160,7 @@ private Component frame;
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jButton5)
-                                .addGap(12, 12, 12)
-                                .addComponent(jButton1)
-                                .addGap(18, 18, 18)
+                                .addGap(110, 110, 110)
                                 .addComponent(jButton3)
                                 .addGap(18, 18, 18)
                                 .addComponent(jButton8, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -221,7 +207,6 @@ private Component frame;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jButton5)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton1)
                         .addComponent(jButton3)
                         .addComponent(jButton8)
                         .addComponent(jButton4)))
@@ -233,45 +218,46 @@ private Component frame;
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        //Detiene la cancion en reproduccion y cierra el programa
         Music.Stop();
         System.exit(0);
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jList1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jList1AncestorAdded
         // TODO add your handling code here:
+        //Desactiva los botones
         jButton11.setEnabled(false);
         jButton12.setEnabled(false);
         jButton10.setEnabled(false);
         File miDir = new File (".");
+        //Se extraen los nombres de las canciones almacenadas para la lista de reproduccion
      try {
        Ruta2 = miDir.getCanonicalPath() + "/Lista_canciones.txt";
        }
-     catch(Exception e) {
-       e.printStackTrace();
+     catch(IOException e) {
        }
+     //Ingresa los datos a la lista de reproduccion
      leer_archivo extraer = new leer_archivo(30);
      lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jList1AncestorAdded
-
-    public void actualizar(){
-        leer_archivo extraer = new leer_archivo(30);
-        lista_p=extraer.leer_archivo1(Ruta2);
-        jList1.setListData(lista_p);
-    }
+ 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
+        //SE muestran los metadatos de la cancion y se modifican
+        Music.Stop();
         String Elemento = (String) jList1.getSelectedValue();
         indice_lista=jList1.getSelectedIndex();
         if (indice_lista>=0 & Elemento!=null){
-        Nombre_can = lista_p[indice_lista];
-        leer_archivo Consulta_cancion = new leer_archivo(9);
-        File miDir = new File (".");
-     try {
-       Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
-       }
-     catch(IOException e) {
-       }
+            dispose();
+            Nombre_can = lista_p[indice_lista];
+            leer_archivo Consulta_cancion = new leer_archivo(9);
+            File miDir = new File (".");
+        try {
+            Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
+        }
+        catch(IOException e) {
+        }
         lista_metadatos=Consulta_cancion.leer_archivo1(Ruta);
         
         Interfas_consultar consul=new Interfas_consultar();
@@ -282,18 +268,23 @@ private Component frame;
         }
     
     }//GEN-LAST:event_jButton8ActionPerformed
-
+  
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         java.awt.EventQueue.invokeLater(new Runnable() {
+        dispose(); 
+        Music.Stop();
+        java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Busqueda().setVisible(true);
             }
         });
     
     }//GEN-LAST:event_jButton3ActionPerformed
-
+    /**
+     * Boton que contiene una accion para reproducir la cancion
+     */
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
+        //Se reproduce la cancion seleccionada y se desactivan botones
         
         String Elemento = (String) jList1.getSelectedValue();
         indice_lista=jList1.getSelectedIndex();
@@ -313,6 +304,7 @@ private Component frame;
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         // TODO add your handling code here:
+        //Se pausa la cancion en reproducion
         jButton10.setEnabled(false);
         jButton12.setEnabled(true);
         Music.Pause();
@@ -321,6 +313,7 @@ private Component frame;
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         // TODO add your handling code here:
+        //Se inicia la cancion en pausa
         jButton10.setEnabled(true);
         jButton12.setEnabled(false);
         Music.Resume();
@@ -328,6 +321,8 @@ private Component frame;
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        //Detiene la cacion por completo
+       
         jButton9.setEnabled(true);
         jButton10.setEnabled(false);
         jButton11.setEnabled(false);
@@ -337,6 +332,7 @@ private Component frame;
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        //Abre una ventana de busqueda para obtener la ruta de la cancion para ser almacanada
         JFileChooser buscador = new JFileChooser();
         buscador.setCurrentDirectory(new java.io.File("."));
         FileNameExtensionFilter filtroImagen=new FileNameExtensionFilter("MP3","mp3");
@@ -358,11 +354,6 @@ private Component frame;
      lista_p=extraer.leer_archivo1(Ruta2);
      jList1.setListData(lista_p);
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        actualizar();
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -402,7 +393,6 @@ private Component frame;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton12;

@@ -1,16 +1,11 @@
 
 import java.awt.Component;
 import java.io.File;
+import java.io.IOException;
 import javax.swing.JOptionPane;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
- *
+ *Clase que extrae la ruta del .txt para reproducir la cacion
  * @author jhonson
  */
 //devuleve la ruta de la cancion para reproducirla
@@ -21,9 +16,13 @@ public class Info_cancion_seleccionada {
     String Ruta;
     private Component frame;
     
-    public Info_cancion_seleccionada(){
-    }
-    
+    //Devuelve la dirreccion en donde se almacena la cancion para ser reproducida
+    /**
+     * Metodo para extraer la ruta
+     * @param indice_lista recibe el indice que devuelve la lista de reproduccion
+     * @param lista_p lista que contiene la lista de canciones
+     * @return Devuelve un String con la direecion de la cancion
+     */
     public String RutaCancion(int indice_lista, String [] lista_p){
         
     
@@ -34,8 +33,7 @@ public class Info_cancion_seleccionada {
         try {
             Ruta = miDir.getCanonicalPath() + "/"+Nombre_can+".txt";
             }
-        catch(Exception e) {
-               e.printStackTrace();
+        catch(IOException e) {
             }
         lista_metadatos=Consulta_cancion.leer_archivo1(Ruta);
         return lista_metadatos[0];

@@ -1,3 +1,4 @@
+//Librerias para la reproduccion de la cancion
 import java.io.BufferedInputStream;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -8,8 +9,13 @@ import javax.swing.JOptionPane;
 import javazoom.jl.decoder.JavaLayerException;
 import javazoom.jl.player.Player;
 
-public class Control 
-{
+/**
+ *Clase que contiene todas las acciones para manipular la reproduccion de la cancion
+ * @author jhonson
+ * 
+ */
+public class Control {
+    //Variables necesarias de buffer y dirreccion de la cancion
     FileInputStream archivo;
     BufferedInputStream Buffer_cancion;
     
@@ -19,7 +25,7 @@ public class Control
     public long songtotalLength;
     
     public String fileLocation;
-    
+    //Metodo para detener la cancion que se esta reproduciendo
     public void Stop(){
         if(player != null){
             player.close();
@@ -27,6 +33,10 @@ public class Control
             songtotalLength = 0;
         }
     }
+    //Metodo que pausa la cancion
+    /**
+     * Pausa la cancion que se esta reproducciendo en memoria
+     */
     public void Pause(){
         if(player != null){
             try {
@@ -38,6 +48,9 @@ public class Control
             }   
         }
     }
+    /**
+     * Renueva la cancion pausada
+    */
     public void Resume(){
         try{
             archivo = new FileInputStream(fileLocation);
@@ -55,6 +68,7 @@ public class Control
         new Thread()
         {
             @Override
+            //inicializa la reproduccion de la cancion
             public void run(){
                 
                 try {
@@ -65,7 +79,12 @@ public class Control
             }
         }.start();
     }
-    
+    //Metodo que recibe la ubicacion de la direccion para reproducirla
+    /**
+     * Metodo para reproduccir la cancion seleccionada
+     * @param path ruta en donde se almacena la cancion
+     * 
+     */
      public void Play(String path){
         
         try{

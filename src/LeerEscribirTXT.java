@@ -1,10 +1,18 @@
 import java.io.*;
 import org.blinkenlights.jid3.ID3Exception;
 public class LeerEscribirTXT{
+    boolean Bandera;
     String Ruta;
     PrintWriter Escribir_por_linea = null;
   
-    
+    //Crea un archivo .txt en donde se almacenan los datos nesesarios
+    /**
+     * Crea un archivo .txt en donde se almacenan los datos nesesarios
+     * @param nombre Nombre de la cancion seleccionada
+     * @param direccion Ruta en donde se almacena la cancion
+     * @throws org.blinkenlights.jid3.ID3Exception Error cuando no se puede extraer un dato
+     * @throws java.io.IOException
+     */
     public void crear(String nombre,String direccion)throws ID3Exception,IOException{
         File texto = new File(nombre+".txt");
         texto.createNewFile();
@@ -14,6 +22,7 @@ public class LeerEscribirTXT{
         MetaDatos p=new MetaDatos(direccion);
         Extraer_imgen_allbum Album_can = new Extraer_imgen_allbum();
         Escribir_por_linea = new PrintWriter(manejarTextoEscritura);
+        //Se guarda dato por dato
         Escribir_por_linea.println(direccion);
         Escribir_por_linea.println(nombre);
         Escribir_por_linea.println(p.getArtista());
@@ -25,15 +34,12 @@ public class LeerEscribirTXT{
         Escribir_por_linea.println(Album_can.ObtenerImagen(direccion,nombre));
         manejarTextoEscritura.close();
         File miDir = new File (".");
-     try {
-       Ruta = miDir.getCanonicalPath() + "/Lista_canciones.txt";
-       }
-     catch(IOException e) {
-       }
-    File Archivo = new File(Ruta);
-    FileWriter Escribir = new FileWriter(Archivo, true);
-    Escribir.write("\n");
-    Escribir.write(nombre);
-    Escribir.close();
+        Ruta = miDir.getCanonicalPath() + "/Lista_canciones.txt";      
+        File Archivo = new File(Ruta);
+        Bandera = Archivo.exists();
+        FileWriter Escribir = new FileWriter(Archivo, Bandera);
+        Escribir.write("\n");
+        Escribir.write(nombre);
+        Escribir.close();
     }
 }

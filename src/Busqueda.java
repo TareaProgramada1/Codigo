@@ -315,6 +315,9 @@ public void buscar()//falta validar en caso que ingrese un nombre que no esta en
 
     private void Boton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton2ActionPerformed
         dispose();
+        InterfazPrincipal ob = new InterfazPrincipal();
+        ob.setVisible(true);
+        
     }//GEN-LAST:event_Boton2ActionPerformed
 
     /**

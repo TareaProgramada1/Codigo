@@ -22,7 +22,7 @@ public class MetaDatos {
     int hor, min,seg,num;
     int duracion;
     private Object audioFile;
-    
+    //Recibe como parametro la dirreccion de la cancion para extraerle los metadatos
     public MetaDatos(String mp3 ) throws ID3Exception
         
     {
@@ -34,11 +34,6 @@ public class MetaDatos {
             if (aoID3Tag[i] instanceof ID3V1_0Tag)
             {
                 ID3V1_0Tag oID3V1_0Tag = (ID3V1_0Tag)aoID3Tag[i];
-     
-                if (oID3V1_0Tag.getTitle() != null)
-                {
-                    System.out.println("Title = " + oID3V1_0Tag.getTitle());
-                }
             }
             else if (aoID3Tag[i] instanceof ID3V2_3_0Tag)
             {
@@ -46,6 +41,7 @@ public class MetaDatos {
                 if (oID3V2_3_0Tag.getTIT2TextInformationFrame() != null)
                 {
                 }
+                //SE estrae el artista, año, album, titulo, genero y duracion de la cancion
                     Artista=oID3V2_3_0Tag.getArtist();
                     Album=oID3V2_3_0Tag.getAlbum();
                     Titulo=oID3V2_3_0Tag.getTitle();
