@@ -13,7 +13,7 @@ public class LeerEscribirTXT{
      * @param nombre Nombre de la cancion seleccionada
      * @param direccion Ruta en donde se almacena la cancion
      * @throws org.blinkenlights.jid3.ID3Exception Error cuando no se puede extraer un dato
-     * @throws java.io.IOException
+     * @throws java.io.IOException Error al abrir el archivo
      */
     public void crear(String nombre,String direccion)throws ID3Exception,IOException{
         File texto = new File(nombre+".txt");
