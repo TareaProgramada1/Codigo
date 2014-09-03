@@ -358,19 +358,18 @@ private Component frame;
          * Sirve para guardar los cambios de informacion que se realizaron
          * Nota: Se puede modificar el dato de duracion, pero este cambio no se guarda
          */
-        
-        File eliminarTXT=new File(Lista_meta[1]+".txt");//Se toma el nombre de la cancion y se agrega .txt para encontar el txt respectivo y eliminarlo
-        eliminarTXT.delete();
- 
-        File texto = new File(jTextField5.getText()+".txt");// Se saca el el contenido del primer Jtext y se crea un txt con el nombre de lo q se saco
-        //Como previamente todos los metadatos se guardan en variables, se puede eliminar el txt para que no hayan archivos inutiles
-        
-        try{
-            if (jTextField5.getText().equals("")||jTextField1.getText().equals("")||jTextField2.getText().equals("")||jTextField3.getText().equals("")||jTextField4.getText().equals("")||jTextField6.getText().equals("")){
-                JOptionPane.showMessageDialog(frame,"No puede dejar espacios en blanco");
+        if (jTextField5.getText().equals("")||jTextField1.getText().equals("")||jTextField2.getText().equals("")||jTextField3.getText().equals("")||jTextField4.getText().equals("")||jTextField6.getText().equals("")){
+            JOptionPane.showMessageDialog(frame,"No puede dejar espacios en blanco");
             // En caso de que se dejen espacios en blanco
-            }
-            else{
+         }
+        else{
+            File eliminarTXT=new File(Lista_meta[1]+".txt");//Se toma el nombre de la cancion y se agrega .txt para encontar el txt respectivo y eliminarlo
+            eliminarTXT.delete();
+
+            File texto = new File(jTextField5.getText()+".txt");// Se saca el el contenido del primer Jtext y se crea un txt con el nombre de lo q se saco
+            //Como previamente todos los metadatos se guardan en variables, se puede eliminar el txt para que no hayan archivos inutiles
+
+            try{
                 texto.createNewFile();
                 FileWriter manejarTextoEscritura = new FileWriter(texto);
                 BufferedWriter escribir = new BufferedWriter(manejarTextoEscritura);
@@ -402,7 +401,7 @@ private Component frame;
                 FileWriter TXTactualizadoEscritura = new FileWriter(TXTactualizado);
                 BufferedWriter TXTactualizadoEscribir = new BufferedWriter(TXTactualizadoEscritura);
                 // Se tiene que actualizar el txt que contiene todas las caciones
-                
+
                 // Se hace un control para no volver a agregar el nombre viejo de la cancion
                 int i=0;    
                 while(lista_p[i]!=null){
@@ -429,11 +428,11 @@ private Component frame;
                     }
                     i++;
                 }
-                TXTactualizadoEscribir.close();
-                }
-        }  
-        catch(IOException e) {
+                TXTactualizadoEscribir.close();     
+            }  
+            catch(IOException e) {
        }
+        }
      
     }//GEN-LAST:event_jButton1ActionPerformed
 
