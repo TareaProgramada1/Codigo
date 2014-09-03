@@ -38,12 +38,16 @@ public class Busqueda extends javax.swing.JFrame {
     private Component frame;
     private String direccion;
     private String dir;
+    String [] Lista_cancion;
 
     /**
      * Creates new form Busqueda
      */
     public Busqueda() {
         initComponents();
+        this.setResizable(false);
+        setDefaultCloseOperation(0);
+        setTitle("Busqueda Avanzada");
     }
 
     /**
@@ -68,6 +72,7 @@ public class Busqueda extends javax.swing.JFrame {
         jButton9 = new javax.swing.JButton();
         jButton10 = new javax.swing.JButton();
         jButton11 = new javax.swing.JButton();
+        jButton12 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Búsqueda");
@@ -80,36 +85,36 @@ public class Busqueda extends javax.swing.JFrame {
             }
         });
         campotexto1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 campotexto1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
 
         jLabel2.setText("Elija una opcion.");
 
         Lista1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 Lista1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane1.setViewportView(Lista1);
 
         campo_lista2.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         campo_lista2.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 campo_lista2AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
             }
         });
         jScrollPane2.setViewportView(campo_lista2);
@@ -162,6 +167,14 @@ public class Busqueda extends javax.swing.JFrame {
             }
         });
 
+        jButton12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Skip-forward32.png"))); // NOI18N
+        jButton12.setText("Resumen");
+        jButton12.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton12ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -175,18 +188,22 @@ public class Busqueda extends javax.swing.JFrame {
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Boton1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton9)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(jButton11))
-                        .addComponent(jScrollPane2))
-                    .addComponent(Boton2))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addComponent(jButton9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(9, 9, 9)
+                        .addComponent(jButton12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton11)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(Boton2)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,10 +213,11 @@ public class Busqueda extends javax.swing.JFrame {
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton9)
                     .addComponent(jButton10)
+                    .addComponent(jButton12)
                     .addComponent(jButton11))
-                .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
                         .addComponent(campotexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(boton2)
@@ -207,12 +225,13 @@ public class Busqueda extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Boton1)
-                    .addComponent(Boton2))
-                .addGap(49, 49, 49))
+                .addComponent(Boton1)
+                .addGap(5, 5, 5)
+                .addComponent(Boton2))
         );
 
         pack();
@@ -377,6 +396,9 @@ public void buscar()
 
     private void campo_lista2AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_campo_lista2AncestorAdded
 
+        jButton11.setEnabled(false);
+        jButton12.setEnabled(false);
+        jButton10.setEnabled(false);
     }//GEN-LAST:event_campo_lista2AncestorAdded
 
     private void Boton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Boton1ActionPerformed
@@ -395,30 +417,24 @@ public void buscar()
         dispose();
         InterfazPrincipal ob = new InterfazPrincipal();
         ob.setVisible(true);
+        Music.Stop();
         
     }//GEN-LAST:event_Boton2ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
         // TODO add your handling code here:
         //Se reproduce la cancion seleccionada y se desactivan botones
-     File miDir = new File (".");
-     try {
-       Ruta2 = miDir.getCanonicalPath() + "/Lista_canciones.txt";
-       }
-     catch(Exception e) {
-       e.printStackTrace();
-       }
-     leer_archivo extraer = new leer_archivo(30);
-     lista_p=extraer.leer_archivo1(Ruta2);
         String Elemento = (String) campo_lista2.getSelectedValue();
-        indice_lista=campo_lista2.getSelectedIndex();
-        if (indice_lista>=0 & Elemento!=null){
+        Lista_cancion = new String [2];
+        Lista_cancion [0]= Elemento;
+        if (Elemento!=null){
             Info_cancion_seleccionada Reproduccion = new Info_cancion_seleccionada();
             jButton11.setEnabled(true);
             jButton9.setEnabled(false);
+            jButton12.setEnabled(false);
             jButton10.setEnabled(true);
             Music.Stop();
-            Music.Play(Reproduccion.RutaCancion(indice_lista,lista_p ));
+            Music.Play(Reproduccion.RutaCancion(0,Lista_cancion));
         }
         else{
             JOptionPane.showMessageDialog(frame,"Por favor seleccione una cancion");
@@ -429,6 +445,7 @@ public void buscar()
         // TODO add your handling code here:
         //Se pausa la cancion en reproducion
         jButton10.setEnabled(false);
+        jButton12.setEnabled(true);
         Music.Pause();
 
     }//GEN-LAST:event_jButton10ActionPerformed
@@ -440,8 +457,17 @@ public void buscar()
         jButton9.setEnabled(true);
         jButton10.setEnabled(false);
         jButton11.setEnabled(false);
+        jButton12.setEnabled(false);
         Music.Stop();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
+        // TODO add your handling code here:
+        //Se inicia la cancion en pausa
+        jButton10.setEnabled(true);
+        jButton12.setEnabled(false);
+        Music.Resume();
+    }//GEN-LAST:event_jButton12ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -474,6 +500,7 @@ public void buscar()
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Busqueda().setVisible(true);
+                
             }
         });
     }
@@ -486,6 +513,7 @@ public void buscar()
     private javax.swing.JTextField campotexto1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

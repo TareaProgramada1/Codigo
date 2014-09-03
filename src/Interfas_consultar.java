@@ -24,6 +24,7 @@ private Component frame;
         initComponents();
         this.setResizable(false);
         setDefaultCloseOperation(0);
+        setTitle("Consulta");
     }
 
     /**
