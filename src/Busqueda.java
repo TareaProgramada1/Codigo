@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author janeth
+ *Permite hacer la busqueda.
+ * @author Jose luis
  */
 import com.mxrck.autocompleter.TextAutoCompleter;
 import com.mxrck.autocompleter.AutoCompleter;
@@ -16,9 +12,15 @@ import java.util.Arrays;
 import java.awt.Component;
 import java.io.BufferedReader;
 import java.io.File;
+import org.blinkenlights.jid3.ID3Exception;
 import java.io.FileReader;
 import javax.swing.JOptionPane;
+import java.io.BufferedInputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 public class Busqueda extends javax.swing.JFrame {
+    Control Music = new Control();
     String Lista5[] = {"Artista", "Album","Nombre","Genero"};
     String album[];
     String Artista[];
@@ -27,8 +29,12 @@ public class Busqueda extends javax.swing.JFrame {
     String lista[];
     String listageneral[];
     String Obtenerdato[];
+    String prueba[];
+    private String [] lista_p;
     String Nombre_can;
     private int indice;
+    int indice_lista;
+    String Ruta2;
     private Component frame;
     private String direccion;
     private String dir;
@@ -59,6 +65,9 @@ public class Busqueda extends javax.swing.JFrame {
         Boton1 = new javax.swing.JButton();
         boton2 = new javax.swing.JButton();
         Boton2 = new javax.swing.JButton();
+        jButton9 = new javax.swing.JButton();
+        jButton10 = new javax.swing.JButton();
+        jButton11 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Búsqueda");
@@ -129,72 +138,107 @@ public class Busqueda extends javax.swing.JFrame {
             }
         });
 
+        jButton9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Play32.png"))); // NOI18N
+        jButton9.setText("Play");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        jButton10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Pause32.png"))); // NOI18N
+        jButton10.setText("Pausa");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
+
+        jButton11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconos/Stop32.png"))); // NOI18N
+        jButton11.setText("Detener");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(campotexto1)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Boton1)
-                    .addComponent(boton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(55, 55, 55)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(30, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(Boton2))))
+                    .addComponent(campotexto1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(boton2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Boton1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jButton10, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton9)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jButton11))
+                        .addComponent(jScrollPane2))
+                    .addComponent(Boton2))
+                .addContainerGap(69, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9)
+                    .addComponent(jButton10)
+                    .addComponent(jButton11))
                 .addGap(1, 1, 1)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(campotexto1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(boton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(boton2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(Boton1)
-                        .addGap(31, 31, 31))
-                    .addComponent(Boton2, javax.swing.GroupLayout.Alignment.TRAILING)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Boton1)
+                    .addComponent(Boton2))
+                .addGap(49, 49, 49))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+/**
+ * Permite cargar las informaciones de las canciones,album,genero,artista,con el boton activar opcion.
+ */
 public void cargar()
-   {
-       Busca_cancion agrega=new Busca_cancion(); 
-       campotexto1.setText("");
-       indice=Lista1.getSelectedIndex(); 
-        if(indice>=0)
-        {
+   {   
+       Busca_cancion numero=new Busca_cancion();
+       File fichero=new File("Lista_canciones.txt");
+       int n=numero.lineas("Lista_canciones");
+        Busca_cancion agrega=new Busca_cancion(); 
+        campotexto1.setText("");
+        indice=Lista1.getSelectedIndex(); 
+         if(indice>=0)
+            {
             Nombre_can=Lista5[indice];
             if(Nombre_can==Lista5[0])
             {
-                TextAutoCompleter s=new TextAutoCompleter( campotexto1);
+            TextAutoCompleter s=new TextAutoCompleter( campotexto1);
             Artista=agrega.obtenerArtista(agrega.listacanciones("Lista_canciones"));
             s.addItems(Artista);
             }
             else
             {
-                
-            }
                 if(Nombre_can==Lista5[1])
             {
                 TextAutoCompleter s=new TextAutoCompleter( campotexto1);
@@ -202,36 +246,48 @@ public void cargar()
                 s.addItems(album);  
             }
             else
-                { 
+                {
+                    
                     if (Nombre_can==Lista5[2])
             {
                 TextAutoCompleter s=new TextAutoCompleter(campotexto1);
                 Nombre=agrega.obtenerNombre(agrega.listacanciones("Lista_canciones"));
                 s.addItems(Nombre);
-            }                 
-                   
-            
+            }
+                    
+                
+            else
+               {
+                 if (Nombre_can==Lista5[3])
+                 {
+                TextAutoCompleter s=new TextAutoCompleter(campotexto1);
+                Genero=agrega.obtenerGenero(agrega.listacanciones("Lista_canciones"));
+                s.addItems(Genero);  
+                 }
+        
+   }
+                }
             }
         }
-            else
-        {
+        else
         {
             JOptionPane.showMessageDialog(frame,"Por favor seleccione");
-        }
    }
         
+   
    }
-public void buscar()//falta validar en caso que ingrese un nombre que no esta en lista 
+/**
+ * Método que se encarga de buscar las canciones según lo que se ingresa:artista,album,genero,o nombre de la canción.
+ */
+public void buscar()
 {
+    Busca_cancion num=new Busca_cancion();
+    int n=num.lineas("Lista_canciones");
     Listas cancion=new Listas(20);
     String dato=campotexto1.getText();
-    if (dato.length()==0)
-    {
-        JOptionPane.showMessageDialog(frame,"Campo de texto vacio");
-    }
-    else
-    {
-        
+    String list[]=new String[8];
+    if (dato.length()>0)
+    {    
     int resultado;
     File miDir = new File (".");
      try {
@@ -240,7 +296,7 @@ public void buscar()//falta validar en caso que ingrese un nombre que no esta en
      catch(Exception e) {
        e.printStackTrace();
        }
-     leer_archivo extraer = new leer_archivo(11);
+     leer_archivo extraer = new leer_archivo(n);
      this.lista=extraer.leer_archivo1(direccion);
      int tamaño = this.lista.length;
         for (int i = 0; i < tamaño; i++) 
@@ -253,45 +309,60 @@ public void buscar()//falta validar en caso que ingrese un nombre que no esta en
             }
             leer_archivo Consulta_cancion = new leer_archivo(15);
             this.Obtenerdato = Consulta_cancion.leer_archivo1(direccion);
-            String nom_artista=Obtenerdato[2];
+            this.prueba=num.listacanc(Obtenerdato);
+            String nom_artista=prueba[2];
             nom_artista.trim();
             dato.trim();
             resultado=nom_artista.compareToIgnoreCase(dato);
             if(resultado==0)
             {
-               cancion.agregarele(Obtenerdato[1]); 
-               this.listageneral=cancion.imprimir(lista.length);   
+               cancion.agregarele(prueba[1]); 
+               this.listageneral=cancion.imprimir(lista.length); 
+               campo_lista2.setListData(listageneral);
+              
             }
-            else
+            String nom_genero=prueba[6];
+            nom_genero.trim();
+            dato.trim();
+            resultado=nom_genero.compareToIgnoreCase(dato);
+            if(resultado==0)
             {
-            String nom_album=Obtenerdato[4];
+               cancion.agregarele(prueba[1]); 
+               this.listageneral=cancion.imprimir(lista.length); 
+               campo_lista2.setListData(listageneral);
+               
+           
+            }
+            String nom_album=prueba[4];
             nom_album.trim();
             dato.trim();
             resultado=nom_album.compareToIgnoreCase(dato);
             if(resultado==0)
             {
-              cancion.agregarele(Obtenerdato[1]); 
-              this.listageneral=cancion.imprimir(lista.length);   
+               cancion.agregarele(prueba[1]); 
+               this.listageneral=cancion.imprimir(lista.length); 
+               campo_lista2.setListData(listageneral);
+             
             }
-            else
-            {
-            String nom_cancion=Obtenerdato[1];
-            nom_cancion.trim();
+            String nom_canc=prueba[1];
+            nom_canc.trim();
             dato.trim();
-            resultado=nom_cancion.compareToIgnoreCase(dato);   
+            resultado=nom_canc.compareToIgnoreCase(dato);
             if(resultado==0)
             {
-             cancion.agregarele(Obtenerdato[1]); 
-              this.listageneral=cancion.imprimir(lista.length);     
-            }
-            }
-                
+               cancion.agregarele(prueba[1]); 
+               this.listageneral=cancion.imprimir(lista.length); 
+               campo_lista2.setListData(listageneral);
+               break;
             }
             
-       }
-        campo_lista2.setListData(listageneral);
-        
+        }
+       
    }
+    else
+    {
+      JOptionPane.showMessageDialog(frame,"campo vacio");  
+    }
 }
     private void campotexto1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campotexto1ActionPerformed
        
@@ -326,6 +397,51 @@ public void buscar()//falta validar en caso que ingrese un nombre que no esta en
         ob.setVisible(true);
         
     }//GEN-LAST:event_Boton2ActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        //Se reproduce la cancion seleccionada y se desactivan botones
+     File miDir = new File (".");
+     try {
+       Ruta2 = miDir.getCanonicalPath() + "/Lista_canciones.txt";
+       }
+     catch(Exception e) {
+       e.printStackTrace();
+       }
+     leer_archivo extraer = new leer_archivo(30);
+     lista_p=extraer.leer_archivo1(Ruta2);
+        String Elemento = (String) campo_lista2.getSelectedValue();
+        indice_lista=campo_lista2.getSelectedIndex();
+        if (indice_lista>=0 & Elemento!=null){
+            Info_cancion_seleccionada Reproduccion = new Info_cancion_seleccionada();
+            jButton11.setEnabled(true);
+            jButton9.setEnabled(false);
+            jButton10.setEnabled(true);
+            Music.Stop();
+            Music.Play(Reproduccion.RutaCancion(indice_lista,lista_p ));
+        }
+        else{
+            JOptionPane.showMessageDialog(frame,"Por favor seleccione una cancion");
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        //Se pausa la cancion en reproducion
+        jButton10.setEnabled(false);
+        Music.Pause();
+
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+        //Detiene la cacion por completo
+
+        jButton9.setEnabled(true);
+        jButton10.setEnabled(false);
+        jButton11.setEnabled(false);
+        Music.Stop();
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -368,6 +484,9 @@ public void buscar()//falta validar en caso que ingrese un nombre que no esta en
     private javax.swing.JButton boton2;
     private javax.swing.JList campo_lista2;
     private javax.swing.JTextField campotexto1;
+    private javax.swing.JButton jButton10;
+    private javax.swing.JButton jButton11;
+    private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;

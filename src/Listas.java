@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 
 /**
- *
- * @author janeth
+ *Clase listas.y métodos que actuan sobre listas.
+ * @author Jose Luis
  */
 import java.io.*;
 import java.util.Arrays;
@@ -49,7 +45,7 @@ public String[] imprimir(int capacidad)
 { 
    this.lista1 = new String [capacidad];
    int ind=0;
-   while(ind<this.size)
+   while(ind<this.lista1.length)
    {
        this.lista1[ind]=this.lista[ind];            
        ++ind;    
