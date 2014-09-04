@@ -86,7 +86,7 @@ public String obtenerNombre()
 /**
  * 
  * @param list recibe una lista.
- * @return retorna el nombre de los albunes segun su posición.
+ * @return retorna el nombre de los albunes según su posición.
  */
 public String[] obtenerAlbum(String list[])
         
@@ -224,7 +224,7 @@ public String[] obtenerGenero(String list[])
  */
 public String[] listacanc( String list[] )
 { 
-   this.album=list;
+   this.album=list;//album es una variable lista culquiera.
    for(int i=1;i<8;i++)
    {
        if(album[i]==null)

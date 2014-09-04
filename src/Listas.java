@@ -6,11 +6,15 @@
 import java.io.*;
 import java.util.Arrays;
 public class Listas {
+    //Declaración de variables..
     private int size;
     private int Maxsize;
     private String[]lista;
     private String[]lista1;
     private String direccion;
+    /**
+     * Constructores sin y con parámetros.
+     */
 public Listas()
 {
    
@@ -23,6 +27,10 @@ public Listas(int Tamaño)
     this.Maxsize=Tamaño;
     this.lista=new String[Tamaño];
 }
+/**
+ * 
+ * @param e representa el elemento a agregar en el arreglo.
+ */
 public void agregarele(String e)
 {
  if(this.size<this.Maxsize)
@@ -36,11 +44,19 @@ public void agregarele(String e)
 }
  
 }
+/**
+ * 
+ * @return el tamaño de la lista,es decir, la cantidad de elemento que posee..
+ */
 public int getsize()
 {
     return this.size;
 }
-
+/**
+ * 
+ * @param capacidad representa un número entero que se utiliza para definir el tamaño máximo de la lista.. 
+ * @return devuelve una lista con los datos originales de otra lista..
+ */
 public String[] imprimir(int capacidad)
 { 
    this.lista1 = new String [capacidad];
@@ -53,6 +69,10 @@ public String[] imprimir(int capacidad)
    
    return lista1;
 }
+/**
+ * 
+ * @return devuelve una lista..
+ */
 public String[] imprimelista()
 { 
    return lista;
@@ -67,7 +87,11 @@ public int cantdatos(String lista[])
     }
     return i;
 }
-    
+ /**
+  * 
+  * @param nombre cualquier String que se desea buscar en una lista.
+  * @return verdadero en caso de encontrarse, falso en cualquier otro caso..
+  */
 public boolean encontrarele(String nombre)
 {
     int i=0;
@@ -85,6 +109,9 @@ public boolean encontrarele(String nombre)
     }
     return false;
 }
+/**
+ * Pone el tamaño de una lista en cero.
+ */
 public void vacio()
 {
 this.size=0;
