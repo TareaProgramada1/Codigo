@@ -205,10 +205,10 @@ private Component frame;
                         .addComponent(jButton3)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(228, 228, 228)
                 .addComponent(jLabel8)
-                .addGap(199, 199, 199))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jTextField1, jTextField2, jTextField3, jTextField4, jTextField5, jTextField6, jTextField7});
@@ -231,9 +231,9 @@ private Component frame;
                             .addComponent(jLabel1)
                             .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -346,6 +346,10 @@ private Component frame;
             TXTactualizadoEscribir.close();
             File eliminarTXT=new File(Lista_meta[1]+".txt");
             eliminarTXT.delete();
+            JOptionPane.showMessageDialog(frame,"La cancion ha sido eliminada exitosamente");
+            dispose();
+            InterfazPrincipal ob = new InterfazPrincipal();
+            ob.setVisible(true);
         }
         catch(Exception e) {
             e.printStackTrace();
@@ -429,10 +433,14 @@ private Component frame;
                     }
                     i++;
                 }
-                TXTactualizadoEscribir.close();     
+                TXTactualizadoEscribir.close(); 
+                JOptionPane.showMessageDialog(frame,"Los datos han sido modificados exitosamente");
+                dispose();
+                InterfazPrincipal ob = new InterfazPrincipal();
+                ob.setVisible(true);
             }  
             catch(IOException e) {
-       }
+            }
         }
      
     }//GEN-LAST:event_jButton1ActionPerformed
