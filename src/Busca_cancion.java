@@ -3,6 +3,7 @@
 /**
  *La clase Busca_cancion permite obtener los nombres de: las canciones,album,genero,artista. 
  * @author Jose Luis
+ * Es una prueba
  */
 import java.io.*;
 import java.util.Arrays;
